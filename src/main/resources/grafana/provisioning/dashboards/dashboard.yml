@@ -1,0 +1,15 @@
+# This is a grafana dashboard
+apiVersion: 1
+
+providers:
+  - name: 'JVM'
+    orgId: 1
+    folder: ''
+    folderUid: ''
+    type: file
+    disableDeletion: false
+    updateIntervalSeconds: 10
+    allowUiUpdates: false
+    options:
+      path: ${GF_DASHBOARDS_PATH}
+      foldersFromFilesStructure: true
