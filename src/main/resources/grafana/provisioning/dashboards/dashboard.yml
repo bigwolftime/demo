@@ -2,7 +2,7 @@
 apiVersion: 1
 
 providers:
-  - name: 'JVM'
+  - name: 'dashboard'
     orgId: 1
     folder: ''
     folderUid: ''

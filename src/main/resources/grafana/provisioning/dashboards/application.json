@@ -86,7 +86,7 @@
         "x": 0,
         "y": 0
       },
-      "id": 2,
+      "id": 5,
       "options": {
         "legend": {
           "calcs": [],
@@ -107,7 +107,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "jvm_classes_loaded_classes{job=\"app-job\"}",
+          "expr": "scrape_duration_seconds{job=\"app-job\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -117,7 +117,7 @@
           "useBackend": false
         }
       ],
-      "title": "loaded classes",
+      "title": "Scrape duration sec",
       "type": "timeseries"
     },
     {
@@ -185,7 +185,7 @@
         "x": 12,
         "y": 0
       },
-      "id": 1,
+      "id": 2,
       "options": {
         "legend": {
           "calcs": [],
@@ -206,7 +206,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "jvm_buffer_memory_used_bytes{job=\"app-job\"}",
+          "expr": "disk_free_bytes{job=\"app-job\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -216,7 +216,7 @@
           "useBackend": false
         }
       ],
-      "title": "Memory used",
+      "title": "Disk free bytes",
       "type": "timeseries"
     },
     {
@@ -305,9 +305,9 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "rate(jvm_gc_pause_seconds_count{job=\"app-job\"}[$__rate_interval])",
+          "expr": "disk_total_bytes{job=\"app-job\"}",
           "fullMetaSearch": false,
-          "includeNullMetadata": false,
+          "includeNullMetadata": true,
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
@@ -315,7 +315,7 @@
           "useBackend": false
         }
       ],
-      "title": "Gc count",
+      "title": "Disk total bytes",
       "type": "timeseries"
     },
     {
@@ -404,7 +404,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "jvm_threads_live_threads{job=\"app-job\"}",
+          "expr": "jdbc_connections_max{job=\"app-job\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -414,7 +414,106 @@
           "useBackend": false
         }
       ],
-      "title": "Live threads",
+      "title": "Jdbc connection max",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 16
+      },
+      "id": 1,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "application_started_time_seconds{job=\"app-job\"}",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A",
+          "useBackend": false
+        }
+      ],
+      "title": "Application Start sec",
       "type": "timeseries"
     }
   ],
@@ -424,13 +523,13 @@
     "list": []
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "browser",
-  "title": "JVM",
-  "uid": "fdr7kup4ffda8c",
-  "version": 1,
+  "title": "Applications",
+  "uid": "ddr8tmhx0veo0f",
+  "version": 4,
   "weekStart": ""
 }
