@@ -14,6 +14,7 @@ COPY target/*.jar app.jar
 
 # Make port 8080 available outside this container
 EXPOSE 8080
+EXPOSE 5005
 
 # Run the jar file
-ENTRYPOINT ["java","-jar","/app/app.jar"]
+ENTRYPOINT ["java","-jar","/app/app.jar", "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005"]

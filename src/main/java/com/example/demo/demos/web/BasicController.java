@@ -20,9 +20,13 @@ import com.example.demo.demos.domain.User;
 import com.example.demo.demos.service.UserService;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -40,13 +44,13 @@ public class BasicController {
 
 
     // http://127.0.0.1:8080/hello?name=lisi
-    @RequestMapping("/hello")
+    @GetMapping("/hello")
     @ResponseBody
     public String hello(@RequestParam(name = "name", defaultValue = "unknown user") String name) {
         return "Hello " + name;
     }
 
-    @GetMapping("/set")
+    @PostMapping("/set")
     @ResponseBody
     public String redisSet(@RequestParam("key") String key, @RequestParam("val") String val) {
         stringRedisTemplate.opsForValue().set(key, val);
@@ -62,7 +66,12 @@ public class BasicController {
     @GetMapping("/user")
     @ResponseBody
     public List<User> findByName(String name) {
-        return userService.findByName(name);
+        List<User> list = new ArrayList<>();
+        list.add(new User().setId(1L).setName("lisi"));
+        list.add(new User().setId(2L).setName("wangwu"));
+
+        return list;
+        // return userService.findByName(name);
     }
 
 }
